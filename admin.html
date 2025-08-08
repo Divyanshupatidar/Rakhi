@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksha Bandhan - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <div class="container">
+        <nav class="navigation">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+
+        <!-- Login Section -->
+        <div id="loginSection" class="login-section">
+            <div class="login-card">
+                <div class="card-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>Admin Login</h2>
+                </div>
+                <div class="card-body">
+                    <form id="loginForm" class="login-form">
+                        <div class="input-group">
+                            <label for="adminPassword">Password:</label>
+                            <input 
+                                type="password" 
+                                id="adminPassword" 
+                                placeholder="Enter admin password"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+                        </button>
+                    </form>
+                    <div id="loginError" class="error-message" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Invalid password. Please try again.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel Section -->
+        <div id="adminPanel" class="admin-panel" style="display: none;">
+            <header class="admin-header">
+                <h1><i class="fas fa-cogs"></i> Admin Panel</h1>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </header>
+
+            <div class="admin-content">
+                <!-- Sister Selection -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-users"></i> Select Sister to Edit</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="input-group">
+                            <label for="sisterSelect">Choose Sister:</label>
+                            <select id="sisterSelect">
+                                <option value="">-- Select a sister --</option>
+                            </select>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="addNewBtn" class="btn btn-success">
+                                <i class="fas fa-plus"></i>
+                                Add New Sister
+                            </button>
+                            <button id="deleteBtn" class="btn btn-danger" style="display: none;">
+                                <i class="fas fa-trash"></i>
+                                Delete Sister
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Edit Form -->
+                <section id="editSection" class="section" style="display: none;">
+                    <div class="section-header">
+                        <h2><i class="fas fa-edit"></i> Edit Sister Information</h2>
+                    </div>
+                    <div class="section-body">
+                        <form id="editForm" class="edit-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="editName">Name:</label>
+                                    <input 
+                                        type="text" 
+                                        id="editName" 
+                                        placeholder="Sister's name"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="editGreeting">Greeting:</label>
+                                    <input 
+                                        type="text" 
+                                        id="editGreeting" 
+                                        placeholder="e.g., Happy Raksha Bandhan, Priya!"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="editMessage">Personal Message:</label>
+                                    <textarea 
+                                        id="editMessage" 
+                                        rows="4"
+                                        placeholder="Write a heartfelt message..."
+                                        required
+                                    ></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label>Image URLs (up to 3):</label>
+                                    <input 
+                                        type="url" 
+                                        id="editImage1" 
+                                        placeholder="Image URL 1 (optional)"
+                                    >
+                                    <input 
+                                        type="url" 
+                                        id="editImage2" 
+                                        placeholder="Image URL 2 (optional)"
+                                    >
+                                    <input 
+                                        type="url" 
+                                        id="editImage3" 
+                                        placeholder="Image URL 3 (optional)"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Changes
+                                </button>
+                                <button type="button" id="cancelBtn" class="btn btn-secondary">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- JSON Export Section -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-download"></i> Export Data</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>Copy the JSON below and manually replace the contents of data.json:</p>
+                        <div class="json-container">
+                            <textarea id="jsonOutput" class="json-output" readonly></textarea>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="refreshJsonBtn" class="btn btn-info">
+                                <i class="fas fa-refresh"></i>
+                                Refresh JSON
+                            </button>
+                            <button id="copyJsonBtn" class="btn btn-primary">
+                                <i class="fas fa-copy"></i>
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Admin panel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const ADMIN_PASSWORD = 'rakhi2024'; // Hardcoded password
+            
+            const loginSection = document.getElementById('loginSection');
+            const adminPanel = document.getElementById('adminPanel');
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            const sisterSelect = document.getElementById('sisterSelect');
+            const editSection = document.getElementById('editSection');
+            const editForm = document.getElementById('editForm');
+            const addNewBtn = document.getElementById('addNewBtn');
+            const deleteBtn = document.getElementById('deleteBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            
+            const jsonOutput = document.getElementById('jsonOutput');
+            const refreshJsonBtn = document.getElementById('refreshJsonBtn');
+            const copyJsonBtn = document.getElementById('copyJsonBtn');
+
+            let sistersData = [];
+            let currentEditIndex = -1;
+
+            // Login functionality
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('adminPassword').value;
+                
+                if (password === ADMIN_PASSWORD) {
+                    loginSection.style.display = 'none';
+                    adminPanel.style.display = 'block';
+                    loadSistersData();
+                } else {
+                    loginError.style.display = 'flex';
+                    document.getElementById('adminPassword').value = '';
+                }
+            });
+
+            logoutBtn.addEventListener('click', function() {
+                adminPanel.style.display = 'none';
+                loginSection.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                loginError.style.display = 'none';
+            });
+
+            // Load sisters data
+            async function loadSistersData() {
+                try {
+                    const response = await fetch('data.json');
+                    sistersData = await response.json();
+                    populateSisterSelect();
+                    updateJsonOutput();
+                } catch (error) {
+                    console.error('Error loading sisters data:', error);
+                    sistersData = [];
+                    populateSisterSelect();
+                    updateJsonOutput();
+                }
+            }
+
+            function populateSisterSelect() {
+                sisterSelect.innerHTML = '<option value="">-- Select a sister --</option>';
+                sistersData.forEach((sister, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = sister.name;
+                    sisterSelect.appendChild(option);
+                });
+            }
+
+            sisterSelect.addEventListener('change', function() {
+                const selectedIndex = parseInt(this.value);
+                if (!isNaN(selectedIndex) && selectedIndex >= 0) {
+                    loadSisterForEdit(selectedIndex);
+                    deleteBtn.style.display = 'inline-block';
+                } else {
+                    editSection.style.display = 'none';
+                    deleteBtn.style.display = 'none';
+                }
+            });
+
+            function loadSisterForEdit(index) {
+                const sister = sistersData[index];
+                currentEditIndex = index;
+                
+                document.getElementById('editName').value = sister.name;
+                document.getElementById('editGreeting').value = sister.greeting;
+                document.getElementById('editMessage').value = sister.message;
+                
+                const images = sister.images || [];
+                document.getElementById('editImage1').value = images[0] || '';
+                document.getElementById('editImage2').value = images[1] || '';
+                document.getElementById('editImage3').value = images[2] || '';
+                
+                editSection.style.display = 'block';
+            }
+
+            addNewBtn.addEventListener('click', function() {
+                currentEditIndex = -1;
+                editForm.reset();
+                editSection.style.display = 'block';
+                sisterSelect.value = '';
+                deleteBtn.style.display = 'none';
+            });
+
+            editForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const sisterData = {
+                    name: document.getElementById('editName').value.trim(),
+                    greeting: document.getElementById('editGreeting').value.trim(),
+                    message: document.getElementById('editMessage').value.trim(),
+                    images: [
+                        document.getElementById('editImage1').value.trim(),
+                        document.getElementById('editImage2').value.trim(),
+                        document.getElementById('editImage3').value.trim()
+                    ].filter(url => url !== '')
+                };
+
+                if (currentEditIndex >= 0) {
+                    // Update existing sister
+                    sistersData[currentEditIndex] = sisterData;
+                } else {
+                    // Add new sister
+                    sistersData.push(sisterData);
+                }
+
+                populateSisterSelect();
+                updateJsonOutput();
+                editSection.style.display = 'none';
+                
+                alert('Sister data saved successfully! Don\'t forget to copy the JSON and update data.json file.');
+            });
+
+            deleteBtn.addEventListener('click', function() {
+                if (currentEditIndex >= 0 && confirm('Are you sure you want to delete this sister\'s data?')) {
+                    sistersData.splice(currentEditIndex, 1);
+                    populateSisterSelect();
+                    updateJsonOutput();
+                    editSection.style.display = 'none';
+                    deleteBtn.style.display = 'none';
+                    alert('Sister deleted successfully! Don\'t forget to copy the JSON and update data.json file.');
+                }
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                editSection.style.display = 'none';
+                sisterSelect.value = '';
+                deleteBtn.style.display = 'none';
+            });
+
+            function updateJsonOutput() {
+                jsonOutput.value = JSON.stringify(sistersData, null, 2);
+            }
+
+            refreshJsonBtn.addEventListener('click', function() {
+                loadSistersData();
+            });
+
+            copyJsonBtn.addEventListener('click', function() {
+                jsonOutput.select();
+                jsonOutput.setSelectionRange(0, 99999);
+                
+                try {
+                    document.execCommand('copy');
+                    alert('JSON copied to clipboard!');
+                } catch (err) {
+                    alert('Failed to copy. Please select and copy manually.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

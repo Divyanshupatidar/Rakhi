@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksha Bandhan - Sister's Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="sister-page">
+    <!-- Decorative elements -->
+    <div class="decorative-elements">
+        <div class="rakhi rakhi-1 animate-float">
+            <i class="fas fa-circle"></i>
+        </div>
+        <div class="rakhi rakhi-2 animate-float-delayed">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="rakhi rakhi-3 animate-float">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="rakhi rakhi-4 animate-float-delayed">
+            <i class="fas fa-flower"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="navigation">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <p>Loading your special page...</p>
+        </div>
+
+        <div id="errorContainer" class="error-container" style="display: none;">
+            <div class="error-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>Oops! Something went wrong</h2>
+                <p id="errorMessage">We couldn't find your page. Please try again.</p>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Go Back Home
+                </a>
+            </div>
+        </div>
+
+        <main id="sisterContent" class="sister-content" style="display: none;">
+            <header class="sister-header">
+                <div class="rakhi-border">
+                    <div class="greeting-section">
+                        <h1 id="sisterGreeting" class="sister-greeting"></h1>
+                        <div class="divider">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="message-section">
+                <div class="message-card">
+                    <div class="card-header">
+                        <i class="fas fa-envelope-heart"></i>
+                        <h2>A Special Message for You</h2>
+                    </div>
+                    <div class="card-body">
+                        <p id="sisterMessage" class="sister-message"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="imagesSection" class="images-section">
+                <div class="section-header">
+                    <i class="fas fa-images"></i>
+                    <h2>Beautiful Memories</h2>
+                </div>
+                <div id="imageGallery" class="image-gallery">
+                    <!-- Images will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <section class="wishes-section">
+                <div class="wishes-card">
+                    <div class="rakhi-icon-large">
+                        <i class="fas fa-circle-notch"></i>
+                    </div>
+                    <h2>Raksha Bandhan Wishes</h2>
+                    <p>May this sacred thread strengthen our bond and bring you joy, prosperity, and protection always. Happy Raksha Bandhan!</p>
+                    <div class="decorative-hearts">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Raksha Bandhan Celebration | Made with <i class="fas fa-heart"></i></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize sister page functionality
+        document.addEventListener('DOMContentLoaded', async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sisterName = urlParams.get('name');
+
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorContainer = document.getElementById('errorContainer');
+            const errorMessage = document.getElementById('errorMessage');
+            const sisterContent = document.getElementById('sisterContent');
+
+            if (!sisterName) {
+                showError('No sister name provided. Please go back and enter a name.');
+                return;
+            }
+
+            try {
+                const sisterData = await getSisterData(sisterName);
+                
+                if (sisterData) {
+                    displaySisterData(sisterData);
+                    showContent();
+                } else {
+                    showError(`Sorry, we couldn't find a page for "${sisterName}". The name might be misspelled or not yet added.`);
+                }
+            } catch (error) {
+                console.error('Error loading sister data:', error);
+                showError('Unable to load the page. Please check your internet connection and try again.');
+            }
+
+            function displaySisterData(data) {
+                // Update page title
+                document.title = `Raksha Bandhan - ${data.name}`;
+
+                // Display greeting
+                document.getElementById('sisterGreeting').textContent = data.greeting;
+
+                // Display message
+                document.getElementById('sisterMessage').textContent = data.message;
+
+                // Display images if available
+                const imageGallery = document.getElementById('imageGallery');
+                const imagesSection = document.getElementById('imagesSection');
+                
+                if (data.images && data.images.length > 0) {
+                    imageGallery.innerHTML = '';
+                    data.images.forEach((imageUrl, index) => {
+                        if (imageUrl && imageUrl.trim()) {
+                            const imageContainer = document.createElement('div');
+                            imageContainer.className = 'image-container';
+                            
+                            const img = document.createElement('img');
+                            img.src = imageUrl;
+                            img.alt = `Memory ${index + 1} for ${data.name}`;
+                            img.className = 'gallery-image';
+                            img.loading = 'lazy';
+                            
+                            // Handle image load errors
+                            img.onerror = function() {
+                                imageContainer.innerHTML = `
+                                    <div class="image-placeholder">
+                                        <i class="fas fa-image"></i>
+                                        <p>Image not available</p>
+                                    </div>
+                                `;
+                            };
+                            
+                            imageContainer.appendChild(img);
+                            imageGallery.appendChild(imageContainer);
+                        }
+                    });
+                    
+                    imagesSection.style.display = 'block';
+                } else {
+                    imagesSection.style.display = 'none';
+                }
+            }
+
+            function showContent() {
+                loadingSpinner.style.display = 'none';
+                sisterContent.style.display = 'block';
+                
+                // Add entrance animation
+                sisterContent.style.opacity = '0';
+                sisterContent.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    sisterContent.style.transition = 'all 0.6s ease';
+                    sisterContent.style.opacity = '1';
+                    sisterContent.style.transform = 'translateY(0)';
+                }, 100);
+            }
+
+            function showError(message) {
+                loadingSpinner.style.display = 'none';
+                errorMessage.textContent = message;
+                errorContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

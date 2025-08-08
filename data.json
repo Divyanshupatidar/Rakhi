@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Priya",
+    "greeting": "Happy Raksha Bandhan, Priya!",
+    "message": "You are the best sister ever! Your love, support, and endless laughter have made my life so much brighter. Thank you for being my constant companion through all of life's adventures. This Raksha Bandhan, I promise to always be there for you, just as you have been for me. May our bond grow stronger with each passing year!",
+    "images": [
+      "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "name": "Anjali",
+    "greeting": "Happy Rakhi, Anjali!",
+    "message": "Thanks for all the love and fun times we've shared together! From childhood mischief to grown-up conversations, you've been my partner in everything. Your caring heart and beautiful smile light up every room you enter. On this special day, I want you to know how grateful I am to have you as my sister. Wishing you all the happiness in the world!",
+    "images": [
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    "name": "Riya",
+    "greeting": "Dearest Riya, Happy Raksha Bandhan!",
+    "message": "You bring so much joy and positivity into my life! Your determination and strength inspire me every day. Through all our ups and downs, you've remained my pillar of support and my best friend. This sacred thread represents not just tradition, but the unbreakable bond we share. May this Raksha Bandhan bring you prosperity, health, and endless happiness!",
+    "images": [
+      "https://images.unsplash.com/photo-1494790108755-2616c179e8e8?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop"
+    ]
+  }
+]

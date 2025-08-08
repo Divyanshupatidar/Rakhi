@@ -1,0 +1,877 @@
+/* Raksha Bandhan Website Styles */
+:root {
+    --primary-gold: #FFD700;
+    --saffron: #FF9933;
+    --pink: #FF69B4;
+    --lavender: #E6E6FA;
+    --deep-pink: #FF1493;
+    --orange: #FF8C00;
+    --white: #FFFFFF;
+    --light-cream: #FFF8DC;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --text-dark: #333333;
+    --text-light: #666666;
+    --border-gold: #B8860B;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--light-cream) 0%, var(--lavender) 50%, var(--pink) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Decorative Elements */
+.decorative-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.rakhi {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+.rakhi-1 {
+    top: 10%;
+    left: 10%;
+    color: var(--primary-gold);
+    animation-delay: 0s;
+}
+
+.rakhi-2 {
+    top: 20%;
+    right: 15%;
+    color: var(--saffron);
+    animation-delay: 2s;
+}
+
+.rakhi-3 {
+    bottom: 20%;
+    left: 20%;
+    color: var(--deep-pink);
+    animation-delay: 4s;
+}
+
+.rakhi-4 {
+    bottom: 10%;
+    right: 10%;
+    color: var(--orange);
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Navigation */
+.navigation {
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-gold);
+}
+
+.back-btn:hover {
+    background: var(--primary-gold);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 3px solid var(--primary-gold);
+}
+
+.rakhi-icon {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--saffron), var(--deep-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Card Styles */
+.welcome-card, .message-card, .wishes-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 2px solid var(--primary-gold);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-gold), var(--saffron));
+    color: var(--white);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card-header i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.welcome-text {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-light);
+}
+
+/* Form Styles */
+.name-form, .login-form, .edit-form {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--lavender);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.input-group input[type="url"] {
+    margin-bottom: 0.5rem;
+}
+
+.input-group input[type="url"]:last-child {
+    margin-bottom: 0;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-gold), var(--saffron));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--saffron), var(--deep-pink));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--lavender);
+    color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+    background: var(--pink);
+    color: var(--white);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #20c997, #17a2b8);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #e83e8c, #fd7e14);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8, #6f42c1);
+    color: var(--white);
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #6f42c1, #e83e8c);
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-gold), var(--saffron));
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--saffron), var(--deep-pink));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+/* Message Styles */
+.error-message, .loading-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.error-message {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.loading-message {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+    border: 1px solid rgba(23, 162, 184, 0.3);
+}
+
+/* Features Section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.feature {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 2px solid var(--lavender);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-gold);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.feature p {
+    color: var(--text-light);
+}
+
+/* Sister Page Styles */
+.sister-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.rakhi-border {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 3px solid var(--primary-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.rakhi-border::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.greeting-section {
+    position: relative;
+    z-index: 1;
+}
+
+.sister-greeting {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--saffron), var(--deep-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.divider i {
+    font-size: 1.5rem;
+    color: var(--deep-pink);
+    margin: 0 1rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+}
+
+.sister-message {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--text-dark);
+    font-style: italic;
+}
+
+/* Images Section */
+.images-section {
+    margin: 3rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header i {
+    font-size: 1.5rem;
+    color: var(--saffron);
+    margin-right: 0.5rem;
+}
+
+.section-header h2 {
+    display: inline-flex;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--text-dark);
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.image-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 3px solid var(--primary-gold);
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-placeholder {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--lavender);
+    color: var(--text-light);
+}
+
+.image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Wishes Section */
+.wishes-section {
+    margin: 3rem 0;
+}
+
+.wishes-card {
+    text-align: center;
+    padding: 3rem;
+}
+
+.rakhi-icon-large {
+    font-size: 4rem;
+    color: var(--primary-gold);
+    margin-bottom: 2rem;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.wishes-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.wishes-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.decorative-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.decorative-hearts i {
+    font-size: 1.5rem;
+    color: var(--deep-pink);
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.decorative-hearts i:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.decorative-hearts i:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Loading and Error States */
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+}
+
+.spinner {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+.error-container {
+    text-align: center;
+    padding: 3rem;
+}
+
+.error-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 2px solid var(--deep-pink);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.error-card i {
+    font-size: 3rem;
+    color: var(--deep-pink);
+    margin-bottom: 1rem;
+}
+
+.error-card h2 {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.error-card p {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+}
+
+/* Admin Panel Styles */
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 2px solid var(--primary-gold);
+}
+
+.admin-header h1 {
+    color: var(--text-dark);
+    font-size: 1.8rem;
+}
+
+.admin-header h1 i {
+    color: var(--saffron);
+    margin-right: 0.5rem;
+}
+
+.section {
+    background: var(--white);
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 2px solid var(--lavender);
+    overflow: hidden;
+}
+
+.section-header {
+    background: linear-gradient(135deg, var(--lavender), var(--pink));
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.section-header h2 {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+}
+
+.section-header h2 i {
+    color: var(--saffron);
+    margin-right: 0.5rem;
+}
+
+.section-body {
+    padding: 2rem;
+}
+
+.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.json-container {
+    margin: 1rem 0;
+}
+
+.json-output {
+    width: 100%;
+    height: 300px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    border: 2px solid var(--lavender);
+    border-radius: 10px;
+    padding: 1rem;
+    resize: vertical;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 2px solid var(--primary-gold);
+}
+
+.footer p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.footer i {
+    color: var(--deep-pink);
+}
+
+.admin-link {
+    color: var(--saffron);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.admin-link:hover {
+    color: var(--deep-pink);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .sister-greeting {
+        font-size: 1.8rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions,
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .rakhi-border {
+        padding: 2rem;
+    }
+
+    .wishes-card {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .sister-greeting {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .rakhi-border {
+        padding: 1.5rem;
+    }
+
+    .wishes-card {
+        padding: 1.5rem;
+    }
+
+    .gallery-image {
+        height: 200px;
+    }
+
+    .image-placeholder {
+        height: 200px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .decorative-elements,
+    .navigation,
+    .footer,
+    .admin-link {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+}

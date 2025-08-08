@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksha Bandhan - Find Your Sister's Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="landing-page">
+    <!-- Decorative elements -->
+    <div class="decorative-elements">
+        <div class="rakhi rakhi-1">
+            <i class="fas fa-circle"></i>
+        </div>
+        <div class="rakhi rakhi-2">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="rakhi rakhi-3">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="rakhi-icon">
+                    <i class="fas fa-circle-notch"></i>
+                </div>
+                <h1 class="main-title">Raksha Bandhan</h1>
+                <p class="subtitle">A celebration of sibling love</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="welcome-card">
+                <div class="card-header">
+                    <i class="fas fa-heart"></i>
+                    <h2>Welcome, Dear Sister!</h2>
+                </div>
+                
+                <div class="card-body">
+                    <p class="welcome-text">
+                        Enter your name to find your personalized Raksha Bandhan message
+                    </p>
+                    
+                    <form id="nameForm" class="name-form">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="sisterName" 
+                                placeholder="Enter your name here..."
+                                required
+                                autocomplete="off"
+                            >
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-search"></i>
+                                Find My Page
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="errorMessage" class="error-message" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="errorText"></span>
+                    </div>
+
+                    <div id="loadingMessage" class="loading-message" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Searching for your page...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-gift"></i>
+                    <h3>Personalized Messages</h3>
+                    <p>Special Raksha Bandhan wishes just for you</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-images"></i>
+                    <h3>Beautiful Memories</h3>
+                    <p>Cherished photos and moments to remember</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heart"></i>
+                    <h3>Sibling Love</h3>
+                    <p>Celebrating the bond that lasts forever</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Raksha Bandhan Celebration | Made with <i class="fas fa-heart"></i></p>
+            <a href="admin.html" class="admin-link">
+                <i class="fas fa-cog"></i> Admin
+            </a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize landing page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameForm = document.getElementById('nameForm');
+            const sisterName = document.getElementById('sisterName');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            const loadingMessage = document.getElementById('loadingMessage');
+
+            nameForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const name = sisterName.value.trim();
+                if (!name) {
+                    showError('Please enter a name');
+                    return;
+                }
+
+                showLoading();
+                hideError();
+
+                try {
+                    const exists = await checkSisterExists(name);
+                    hideLoading();
+                    
+                    if (exists) {
+                        // Redirect to sister page with name parameter
+                        window.location.href = `sister.html?name=${encodeURIComponent(name)}`;
+                    } else {
+                        showError(`Sorry, we couldn't find a page for "${name}". Please check the spelling or contact admin.`);
+                    }
+                } catch (error) {
+                    hideLoading();
+                    showError('Unable to search at the moment. Please try again later.');
+                    console.error('Error checking sister:', error);
+                }
+            });
+
+            function showError(message) {
+                errorText.textContent = message;
+                errorMessage.style.display = 'flex';
+            }
+
+            function hideError() {
+                errorMessage.style.display = 'none';
+            }
+
+            function showLoading() {
+                loadingMessage.style.display = 'flex';
+            }
+
+            function hideLoading() {
+                loadingMessage.style.display = 'none';
+            }
+
+            // Focus on input when page loads
+            sisterName.focus();
+        });
+    </script>
+</body>
+</html>
