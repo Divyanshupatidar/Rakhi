@@ -31,8 +31,8 @@
     "greeting": "Happy Raksha Bandhan Divyani Didi",
     "message": "Moti",
     "images": [
-      "file:///Users/divyanshu/Desktop/RakhiConnect/divyani1.JPG",
-      "file:///Users/divyanshu/Desktop/RakhiConnect/divyani2.JPG"
+      "https://raw.githubusercontent.com/Divyanshupatidar/Rakhi/main/divyani1.JPG",
+      "https://raw.githubusercontent.com/Divyanshupatidar/Rakhi/main/divyani2.JPG"
     ]
   }
 ]
